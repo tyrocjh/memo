@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/index/index"
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#1890ff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "MEMO",
+    "backgroundColor": "#1890ff",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
