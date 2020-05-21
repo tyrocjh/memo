@@ -12,13 +12,18 @@
   </view>
   <view class="content">
     <view class="memo-list">
-      <view class="memo-item"><text class="iconfont icontriangle"></text>家庭</view>
-      <view class="memo-item"><text class="iconfont icontriangle"></text>生活</view>
-      <view class="memo-item"><text class="iconfont icontriangle"></text>工作</view>
+      <view class="memo-item" wx:for="{{memoList}}" wx:key="id">
+        <text class="iconfont icontriangle"></text>{{item.name}}
+      </view>
       <view class="memo-item"><text class="iconfont iconmanage"></text>模板管理</view>
-      <view class="memo-item"><text class="iconfont iconplus"></text>创建分类</view>
+      <view class="memo-item" bindtap="addClassify"><text class="iconfont iconplus"></text>创建分类</view>
       <view class="memo-item"><text class="iconfont iconfavorite"></text>我的收藏</view>
     </view>
   </view>
-  <view class="add-btn"><text class="iconfont iconplus"></text></view>
+  <view class="add-btn" bindtap="addMemo"><text class="iconfont iconplus"></text></view>
+  
+  <!-- 分类创建弹窗 -->
+  <classify-add visible="{{classifyAddVisible}}" bind:create="createClassify"></classify-add>
+  <!-- 备忘录创建弹窗 -->
+  <memo-add visible="{{memoAddVisible}}" classifyList="{{memoList}}"></memo-add>
 </view>

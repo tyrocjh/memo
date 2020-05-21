@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "classify-add": "/components/classify-add/classify-add",
+    "memo-add": "/components/memo-add/memo-add"
+  }
 }

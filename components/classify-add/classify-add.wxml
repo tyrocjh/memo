@@ -1,0 +1,12 @@
+<view class="classify-add {{visible?'':'hidden'}}">
+  <view class="mask" bindtap="closePopup"></view>
+  <view class="classify-add-wraper">
+    <view class="title">
+      <input value="{{title}}" auto-focus placeholder="请输入分类名称(10字内)~"
+             maxlength="10" bindinput="changeTitle" />
+    </view>
+    <view class="btns">
+      <button class="btn confirm" size="mini" bindtap="createClassify">创建分类</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<view class="memo-add {{visible?'':'hidden'}}">
+  <view class="mask" bindtap="closeMemo"></view>
+  <view class="memo-add-wraper">
+    <picker bindchange="pickerChange" value="{{index}}" range="{{classifyList}}" range-key="name">
+      <view class="classify-picker">
+        <text class="iconfont iconmanage"></text>
+        <text>选择分类：{{classifyList[index].name}}</text>
+      </view>
+    </picker>
+    <view class="title">
+      <input auto-focus placeholder="填写备忘信息(20字内)~" maxlength="20" />
+    </view>
+    <view class="btns">
+      <button class="btn confirm" size="mini" bindtap="createMemo">确定</button>
+      <button class="btn cancel" size="mini" bindtap="closeMemo">取消</button>
+    </view>
+  </view>
+</view>
