@@ -12,8 +12,24 @@
   </view>
   <view class="content">
     <view class="memo-list">
-      <view class="memo-item" wx:for="{{memoList}}" wx:key="id">
-        <text class="iconfont icontriangle"></text>{{item.name}}
+      <view class="memo-item" wx:for="{{memoList}}" wx:key="id" wx:for-item="classify" wx:for-index="classifyIdx">
+        <view class="memo-item-head">
+          <view>
+            <text class="iconfont icontriangle {{classify.showItems?'show':''}}" data-idx="{{classifyIdx}}" bindtap="toggleClassify"></text>
+            {{classify.name}}
+          </view>
+          <view wx:if="{{classify.undoCount}}" class="count">{{classify.undoCount}}</view>
+        </view>
+        <view class="memo-item-list {{classify.showItems?'show':''}}">
+          <block wx:for="{{classify.items}}" wx:key="id" wx:for-index="memoIdx">
+            <view wx:if="{{!item.done}}" class="list-item">
+              <checkbox-group data-classify-idx="{{classifyIdx}}" data-memo-idx="{{memoIdx}}" bindchange="checkboxChange">
+                <checkbox value="{{item.id}}" checked="{{item.done}}" color="#1890ff" />
+                <text>{{item.title}}</text>
+              </checkbox-group>
+            </view>
+          </block>
+        </view>
       </view>
       <view class="memo-item"><text class="iconfont iconmanage"></text>模板管理</view>
       <view class="memo-item" bindtap="addClassify"><text class="iconfont iconplus"></text>创建分类</view>
@@ -25,5 +41,5 @@
   <!-- 分类创建弹窗 -->
   <classify-add visible="{{classifyAddVisible}}" bind:create="createClassify"></classify-add>
   <!-- 备忘录创建弹窗 -->
-  <memo-add visible="{{memoAddVisible}}" classifyList="{{memoList}}"></memo-add>
+  <memo-add visible="{{memoAddVisible}}" classifyList="{{memoList}}" bind:create="createMemo"></memo-add>
 </view>

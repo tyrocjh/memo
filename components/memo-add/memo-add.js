@@ -12,23 +12,41 @@ Component({
     }
   },
   data: {
-    index: 0,
-    array: ['家庭', '生活', '工作']
+    classifyIdx: 0,
+    memoText: ''
   },
   methods: {
     // 创建备忘录
     createMemo() {
+      if (!this.data.memoText.trim()) {
+        wx.showToast({
+          title: '请填写备忘信息~',
+          icon: 'none'
+        })
+        return;
+      }
+      this.triggerEvent('create', {
+        idx: this.data.classifyIdx,
+        title: this.data.memoText.trim()
+      });
+      this.closeMemo();
+    },
+    // 改变备忘文案
+    changeMemo(e) {
+      this.setData({
+        memoText: e.detail.value
+      })
     },
     // 切换分类
     pickerChange(e) {
-      console.info(e.detail.value)
       this.setData({
-        index: e.detail.value
+        classifyIdx: e.detail.value
       })
     },
     // 关闭弹层
     closeMemo() {
       this.setData({
+        memoText: '',
         visible: false
       })
     }
