@@ -2,13 +2,13 @@ const app = getApp()
 
 Page({
   data: {
+    userInfo: null,
     defaultAvator: '/static/images/avator.png',
     memoAddVisible: false,
     classifyAddVisible: false,
     defaultMemoList: [
-      { id: new Date().getTime(), name: '家庭', items: [] },
-      { id: new Date().getTime() + 1, name: '生活', items: [] },
-      { id: new Date().getTime() + 2, name: '工作', items: [] }
+      { id: new Date().getTime(), name: '生活', items: [] },
+      { id: new Date().getTime() + 1, name: '工作', items: [] }
     ],
     memoList: []
   },
@@ -17,6 +17,10 @@ Page({
   },
   // 初始化数据
   initData() {
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo') || null
+    })
+
     let memoList = wx.getStorageSync('memo');
     if (!memoList) {
       memoList = this.data.defaultMemoList;
@@ -111,5 +115,14 @@ Page({
     this.setData({
       ['memoList['+idx+'].showItems']: !showItems
     });
+  },
+  getuserinfo(res) {
+    let detail = res.detail;
+    if (detail.errMsg && detail.errMsg.includes('ok')) {
+      this.setData({
+        userInfo: detail.userInfo
+      })
+      wx.setStorageSync('userInfo', this.data.userInfo)
+    }
   }
 })

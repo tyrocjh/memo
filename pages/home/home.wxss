@@ -12,6 +12,14 @@
   align-items: center;
 }
 
+.header .header-l button {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  color: #fff;
+  background: transparent;
+}
+
 .header .header-l image {
   margin-right: 20rpx;
   width: 100rpx;
@@ -21,6 +29,16 @@
 
 .header .header-r {
   display: flex;
+}
+
+.header-r button {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: 100%;
+  line-height: 48rpx;
+  color: #fff;
+  background: transparent;
 }
 
 .header .header-r view {
